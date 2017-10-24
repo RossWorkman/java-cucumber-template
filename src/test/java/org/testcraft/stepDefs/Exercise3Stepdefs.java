@@ -10,11 +10,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testcraft.Pages.HomePage;
+import org.testcraft.Pages.TimetablePage;
 
 public class Exercise3Stepdefs {
 
     public WebDriver driver;
     public WebDriverWait waiter;
+    private HomePage hp = new HomePage(driver);
+    private TimetablePage tt = new TimetablePage(driver);
 
     public Exercise3Stepdefs() {
         driver = Hooks.driver;
@@ -22,59 +26,45 @@ public class Exercise3Stepdefs {
 
     @Given("^I'm on the https://www\\.thetrainline\\.com/ main page$")
     public void openTrainlinePage () throws Throwable {
-        driver.manage().window().maximize();
-        driver.get("https://www.thetrainline.com/");
-        Boolean pageTitle = driver.getTitle().contains("Trainline");
+        hp = new HomePage(driver);
+        hp.navigateTo();
+        hp.checkPageTitle();
     }
 
     @When("^I enter the origin station \"([^\"]*)\"$")
     public void enterOriginStation (String arg1) throws Throwable {
-        WebElement origin = driver.findElement(By.id("originStation"));
-        origin.sendKeys(arg1);
+        hp.enterOriginStation(arg1);
     }
 
     @And("^I enter the destination station \"([^\"]*)\"$")
     public void enterDestinationStation (String arg1) throws Throwable {
-        WebElement destination = driver.findElement(By.id("destinationStation"));
-        destination.sendKeys(arg1);
+        hp.enterDestinationStation(arg1);
     }
 
     @And("^I select return$")
     public void returnSelected() throws Throwable {
-        WebElement returnButton = driver.findElement(By.id("journey-type-return"));
-        returnButton.click();
-        if(driver.findElement(By.id("journey-type-return")).isSelected()){
-            System.out.println("True");
-        }else {
-            System.out.println("False");
-        }
+        hp.returnSelected();
     }
 
     @And("^I select Tomorrow and Next day$")
     public void selectTomorrowAndNextDay() throws Throwable {
-        driver.findElement(By.xpath("//*[@id=\"extendedSearchForm\"]/div[3]/div[1]/div/div[1]/button[2]")).click();
-        driver.findElement(By.xpath("//*[@id=\"extendedSearchForm\"]/div[3]/div[2]/div/div[1]/button[2]")).click();
-
+        hp.selectTomorrowAndNextDay();
     }
 
     @When("^I click search button$")
     public void pressSearch() throws Throwable {
-        WebElement sendButton = driver.findElement(By.id("submitButton"));
-        sendButton.click();
-
+        hp.pressSearch();
     }
 
     @Then("^the train times should be displayed$")
     public void displayTrainTickets() throws Throwable {
-        Thread.sleep(3000);
-        WebElement tickets = driver.findElement(By.id("tickets"));
-        Assert.assertTrue(tickets.isDisplayed());
+        tt = new TimetablePage(driver);
+        tt.displayTrainTickets();
     }
 
     @And("^I should have option to change my choices$")
     public void cboiceButtonPresent() throws Throwable {
-        WebElement button = driver.findElement(By.xpath("//*[@id=\"changeJourney\"]"));
-        Boolean buttonExists = button.isDisplayed();
+        tt.choiceButtonPresent();
     }
 }
 
