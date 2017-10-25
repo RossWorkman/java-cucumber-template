@@ -12,6 +12,7 @@ public class TimetablePage extends BasePage  {
     }
 
     public void displayTrainTickets() throws Throwable {
+        Thread.sleep(2000);
         WebElement tickets = driver.findElement(By.id("tickets"));
         Assert.assertTrue(tickets.isDisplayed());
     }

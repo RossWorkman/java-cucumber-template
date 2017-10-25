@@ -13,14 +13,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testcraft.Pages.HomePage;
 import org.testcraft.Pages.TimetablePage;
 
-public class Exercise3Stepdefs {
+public class Exercise5Stepdefs {
 
     public WebDriver driver;
     public WebDriverWait waiter;
     private HomePage hp = new HomePage(driver);
     private TimetablePage tt = new TimetablePage(driver);
 
-    public Exercise3Stepdefs() {
+    public Exercise5Stepdefs() {
         driver = Hooks.driver;
     }
 
@@ -46,9 +46,10 @@ public class Exercise3Stepdefs {
         hp.returnSelected();
     }
 
-    @And("^I select Tomorrow and Next day$")
+    @And("^I select a date in the future$")
     public void selectTomorrowAndNextDay() throws Throwable {
-        hp.selectTomorrowAndNextDay();
+        hp.pickFutureOutDate(20, "December");
+        hp.pickFutureInDate(15, "January", 2018);
     }
 
     @When("^I click search button$")

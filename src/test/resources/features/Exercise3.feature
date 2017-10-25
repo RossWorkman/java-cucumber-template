@@ -9,7 +9,7 @@ Feature: Trainline Search
     When I enter the origin station <originStation>
     And I enter the destination station <destinationStation>
     And I select return
-    And I select Tomorrow and Next day
+    And I select a date in the future
     And I click search button
     Then the train times should be displayed
     And I should have option to change my choices
