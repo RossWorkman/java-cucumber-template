@@ -17,8 +17,4 @@ public class TimetablePage extends BasePage  {
         Assert.assertTrue(tickets.isDisplayed());
     }
 
-    public void choiceButtonPresent() throws Throwable {
-        WebElement button = driver.findElement(By.xpath("//*[@id=\"changeJourney\"]"));
-        Boolean buttonExists = button.isDisplayed();
-    }
 }

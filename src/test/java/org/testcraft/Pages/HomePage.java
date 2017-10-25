@@ -91,7 +91,7 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void pickFutureInDate (int days, String month, int year) throws InterruptedException {
+    public void pickFutureReturnDate (int days, String month, int year) throws InterruptedException {
         int selected = 0;
         Calendar today = Calendar.getInstance();
         int dayOfMonth = today.get(Calendar.DAY_OF_MONTH);
