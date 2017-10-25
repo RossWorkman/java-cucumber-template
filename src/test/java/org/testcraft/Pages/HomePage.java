@@ -55,6 +55,17 @@ public class HomePage extends BasePage {
         }
     }
 
+    public void clickSameDay () throws Throwable {
+        driver.findElement(By.cssSelector("#extendedSearchForm > div.row.datetime-section > div.return-section.col-xs-6 > div > div.date-shortcuts > button.btn.btn-link.btn-xs.same-day.pull-left")).click();
+    }
+
+    public void addHoursToReturn (int hours) {
+        Calendar today = Calendar.getInstance();
+        int currentHour = today.get(Calendar.HOUR_OF_DAY);
+        Select dropdown = new Select(driver.findElement(By.id("returnHour")));
+        dropdown.selectByIndex(currentHour + hours + 1);
+    }
+
     public void pickFutureOutDate(int days, String month, int year){
         int selected = 0;
         Calendar today = Calendar.getInstance();

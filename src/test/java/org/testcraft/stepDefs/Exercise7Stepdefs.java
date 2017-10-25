@@ -13,14 +13,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testcraft.Pages.HomePage;
 import org.testcraft.Pages.TimetablePage;
 
-public class Exercise6Stepdefs {
+public class Exercise7Stepdefs {
 
     public WebDriver driver;
     public WebDriverWait waiter;
     private HomePage hp = new HomePage(driver);
     private TimetablePage tt = new TimetablePage(driver);
 
-    public Exercise6Stepdefs() {
+    public Exercise7Stepdefs() {
         driver = Hooks.driver;
     }
 
@@ -41,9 +41,19 @@ public class Exercise6Stepdefs {
         hp.enterDestinationStation(arg1);
     }
 
-    @And("^I pick 2 Adults and 2 Children$")
+    @And("^I pick return$")
     public void choosePassengers () throws Throwable {
-        hp.multiplePassengers(2,2);
+        hp.returnSelected();
+    }
+
+    @And("^I choose to return on the same day$")
+    public void sameDayReturn () throws Throwable {
+        hp.clickSameDay();
+    }
+
+    @And("^I choose to return 2 hours later$")
+    public void returnLater () {
+        hp.addHoursToReturn(2);
     }
 
     @When("^I click search button$")
