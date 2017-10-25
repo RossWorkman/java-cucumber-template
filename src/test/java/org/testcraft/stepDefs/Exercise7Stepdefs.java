@@ -51,7 +51,7 @@ public class Exercise7Stepdefs {
         hp.clickSameDay();
     }
 
-    @And("^I choose to return 2 hours later$")
+    @And("^I choose to return hours later$")
     public void returnLater () {
         hp.addHoursToReturn(2);
     }
