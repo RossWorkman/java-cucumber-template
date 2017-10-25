@@ -13,14 +13,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testcraft.Pages.HomePage;
 import org.testcraft.Pages.TimetablePage;
 
-public class Exercise5Stepdefs {
+public class Exercise6Stepdefs {
 
     public WebDriver driver;
     public WebDriverWait waiter;
     private HomePage hp = new HomePage(driver);
     private TimetablePage tt = new TimetablePage(driver);
 
-    public Exercise5Stepdefs() {
+    public Exercise6Stepdefs() {
         driver = Hooks.driver;
     }
 
@@ -41,15 +41,9 @@ public class Exercise5Stepdefs {
         hp.enterDestinationStation(arg1);
     }
 
-    @And("^I select return$")
-    public void returnSelected() throws Throwable {
-        hp.returnSelected();
-    }
-
-    @And("^I select a date in the future$")
-    public void selectTomorrowAndNextDay() throws Throwable {
-        hp.pickFutureOutDate(20, "December");
-        hp.pickFutureInDate(15, "January", 2018);
+    @And("^I pick 2 Adults and 2 Children$")
+    public void choosePassengers () throws Throwable {
+        hp.multiplePassengers(2,2);
     }
 
     @When("^I click search button$")
@@ -63,10 +57,6 @@ public class Exercise5Stepdefs {
         tt.displayTrainTickets();
     }
 
-    @And("^I should have option to change my choices$")
-    public void cboiceButtonPresent() throws Throwable {
-        tt.choiceButtonPresent();
-    }
 }
 
 

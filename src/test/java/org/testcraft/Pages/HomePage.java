@@ -117,6 +117,15 @@ public class HomePage extends BasePage {
 
     }
 
+    public void multiplePassengers (int adults, int children) throws Throwable {
+        driver.findElement(By.className("passenger-summary-people")).click();
+        Select adultsNumber = new Select(driver.findElement(By.id("adults")));
+        adultsNumber.selectByIndex(adults);
+        Select childrenNumber = new Select(driver.findElement(By.id("children")));
+        childrenNumber.selectByIndex(children);
+        driver.findElement(By.cssSelector("#extendedSearchForm > div:nth-child(7) > div:nth-child(1) > div > div > button")).click();
+    }
+
     public void pressSearch() throws Throwable {
         WebElement sendButton = driver.findElement(By.id("submitButton"));
         sendButton.click();
